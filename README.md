@@ -48,7 +48,7 @@ async def main() -> None:
 
     # Get user-reported data for the location closest to a latitude/longitude:
     nearest_user_data = await client.user_data.async_get_nearest_by_coordinates(
-        LATITUDE, LONGITUDE
+        40.7152, -73.9877
     )
 
     # Get totals for user-reported data:
