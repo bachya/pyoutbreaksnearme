@@ -46,7 +46,7 @@ warn_unused_ignores = true
 
 [tool.poetry]
 name = "pyoutbreaksnearme"
-version = "2022.08.0"
+version = "2022.08.1"
 description = "A Python3 API for Outbreaks Near Me"
 readme = "README.md"
 authors = ["Aaron Bach <bachya1208@gmail.com>"]
