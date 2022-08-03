@@ -7,8 +7,9 @@ from aiohttp import ClientSession, ClientTimeout
 from aiohttp.client_exceptions import ClientError
 
 from pyoutbreaksnearme.const import LOGGER
+from pyoutbreaksnearme.data.cdc import CDCData
+from pyoutbreaksnearme.data.user import UserData
 from pyoutbreaksnearme.errors import RequestError
-from pyoutbreaksnearme.user import UserData
 
 API_HOST = "outbreaksnearme.org"
 API_URL_BASE = f"https://{API_HOST}/api"
@@ -26,6 +27,7 @@ class Client:  # pylint: disable=too-few-public-methods
     def __init__(self, *, session: ClientSession | None = None) -> None:
         """Initialize."""
         self._session = session
+        self.cdc_data = CDCData(self._async_request)
         self.user_data = UserData(self._async_request)
 
     async def _async_request(

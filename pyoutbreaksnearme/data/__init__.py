@@ -1,25 +1,31 @@
-"""Define user data."""
+"""Define data management."""
 from __future__ import annotations
 
-import asyncio
 from collections.abc import Awaitable, Callable
 from typing import Any, Dict, cast
 
 from pyoutbreaksnearme.util.geo import haversine
 
 
-class UserData:
+class Data:  # pylint: disable=too-few-public-methods
     """Define a manager object for state/coordinate data."""
 
-    def __init__(self, async_request: Callable[..., Awaitable[dict[str, Any]]]):
+    def __init__(
+        self,
+        async_request: Callable[..., Awaitable[dict[str, Any]]],
+        nearest_data_endpoint: str,
+    ):
         """Initialize."""
         self._async_request = async_request
+        self._nearest_data_endpoint = nearest_data_endpoint
 
     async def async_get_nearest_by_coordinates(
         self, latitude: float, longitude: float
     ) -> dict[str, Any]:
-        """Get the nearest user reports to a latitude/longitude."""
-        raw_user_report_data = await self._async_request("get", "markers/US")
+        """Get the nearest CDC to a latitude/longitude."""
+        raw_user_report_data = await self._async_request(
+            "get", self._nearest_data_endpoint
+        )
         feature = min(
             raw_user_report_data["features"],
             key=lambda r: haversine(
@@ -30,12 +36,3 @@ class UserData:
             ),
         )
         return cast(Dict[str, Any], feature["properties"])
-
-    async def async_get_totals(self) -> dict[str, Any]:
-        """Get user report totals."""
-        tasks = [
-            self._async_request("get", "usersubmission/stats/region/NOA"),
-            self._async_request("get", "stats/US"),
-        ]
-        results = await asyncio.gather(*tasks)
-        return {**results[0], **results[1]}

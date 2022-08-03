@@ -54,6 +54,11 @@ async def main() -> None:
     # Get totals for user-reported data:
     user_totals_data = await client.user_data.async_get_totals()
 
+    # Get CDC data for the location closest to a latitude/longitude:
+    nearest_user_data = await client.cdc_data.async_get_nearest_by_coordinates(
+        40.7152, -73.9877
+    )
+
 
 asyncio.run(main())
 ```
