@@ -10,7 +10,8 @@
 
 <a href="https://www.buymeacoffee.com/bachya1208P" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-DESCRIPTION
+`pyoutbreaksnearme` is a Python3, asyncio-based library for getting data from
+[Outbreaks Near Me](https://outbreaksnearme.org).
 
 - [Installation](#installation)
 - [Python Versions](#python-versions)
