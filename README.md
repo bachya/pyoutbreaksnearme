@@ -1,4 +1,4 @@
-# 🚰 pyoutbreaksnearme: DESCRIPTION
+# 🚰 pyoutbreaksnearme: A Python3 API for Outbreaks Near Me
 
 [![CI](https://github.com/bachya/pyoutbreaksnearme/workflows/CI/badge.svg)](https://github.com/bachya/pyoutbreaksnearme/actions)
 [![PyPi](https://img.shields.io/pypi/v/pyoutbreaksnearme.svg)](https://pypi.python.org/pypi/pyoutbreaksnearme)
@@ -10,7 +10,8 @@
 
 <a href="https://www.buymeacoffee.com/bachya1208P" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-DESCRIPTION
+`pyoutbreaksnearme` is a Python3, asyncio-based library for getting data from
+[Outbreaks Near Me](https://outbreaksnearme.org).
 
 - [Installation](#installation)
 - [Python Versions](#python-versions)
@@ -32,6 +33,56 @@ pip install pyoutbreaksnearme
 * Python 3.10
 
 # Usage
+
+```python
+import asyncio
+
+from aiohttp import ClientSession
+
+from pyoutbreaksnearme import Client
+
+
+async def main() -> None:
+    """Create the aiohttp session and run the example."""
+    client = await Client()
+
+    # Get user-reported data for the location closest to a latitude/longitude:
+    nearest_user_data = await client.user_data.async_get_nearest_by_coordinates(
+        40.7152, -73.9877
+    )
+
+    # Get totals for user-reported data:
+    user_totals_data = await client.user_data.async_get_totals()
+
+
+asyncio.run(main())
+```
+
+By default, the library creates a new connection to Outbreaks Near Me with each
+coroutine. If you are calling a large number of coroutines (or merely want to squeeze
+out every second of runtime savings possible), an
+[`aiohttp`](https://github.com/aio-libs/aiohttp) `ClientSession` can be used for connection
+pooling:
+
+```python
+import asyncio
+
+from aiohttp import ClientSession
+
+from pyoutbreaksnearme import Client
+
+
+async def main() -> None:
+    """Create the aiohttp session and run the example."""
+    async with ClientSession() as session:
+        # Create a Notion API client:
+        client = await Client(session=session)
+
+        # Get to work...
+
+
+asyncio.run(main())
+```
 
 # Contributing
 
