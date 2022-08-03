@@ -13,7 +13,7 @@ _LOGGER = logging.getLogger()
 async def main() -> None:
     """Create the aiohttp session and run the example."""
     async with ClientSession() as session:
-        logging.basicConfig(level=logging.DEBUG)
+        logging.basicConfig(level=logging.INFO)
 
         client = Client(session=session)
         try:
