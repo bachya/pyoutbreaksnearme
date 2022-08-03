@@ -12,6 +12,12 @@ def markers_us_response_fixture():
     return json.loads(load_fixture("markers_us_response.json"))
 
 
+@pytest.fixture(name="nonuserstats_us_response", scope="session")
+def nonuserstats_us_response_fixture():
+    """Define a fixture to return CDC data."""
+    return json.loads(load_fixture("nonuserstats_us_response.json"))
+
+
 @pytest.fixture(name="stats_us_response", scope="session")
 def stats_us_response_fixture():
     """Define a fixture to return user report totals per disease type."""

@@ -1,0 +1,30 @@
+{
+  "confirmedcase": 91217337,
+  "death": 1029519,
+  "state": null,
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "35006",
+      "type": "Feature",
+      "properties": {
+        "country": "US",
+        "state": "New Mexico",
+        "county": "Cibola",
+        "confirmed": 8200,
+        "death": 201,
+        "iRateConfirm": 11115.2764761012,
+        "iRateDeath": 272.45982581662696,
+        "paintConfirm": "#474747",
+        "paintDeath": "#474747"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.998876,
+          34.91131525
+        ]
+      }
+    }
+  ]
+}
