@@ -1,2 +1,2 @@
-"""Define the aiowatttime package."""
+"""Define the pyoutbreaksnearme package."""
 from .client import Client  # noqa

@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "symptoms": 1,
+        "fluSymptoms": 0,
+        "otherSymptoms": 0,
+        "noSymptoms": 0,
+        "zipcode": "10002"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9877,
+          40.7152
+        ]
+      }
+    }
+  ]
+}
