@@ -27,7 +27,11 @@ class Data:  # pylint: disable=too-few-public-methods
             "get", self._nearest_data_endpoint
         )
         feature = min(
-            raw_user_report_data["features"],
+            (
+                feature
+                for feature in raw_user_report_data["features"]
+                if feature["geometry"]["coordinates"][0] is not None
+            ),
             key=lambda r: haversine(
                 latitude,
                 longitude,

@@ -25,6 +25,28 @@
           34.91131525
         ]
       }
+    },
+    {
+      "id": "99999",
+      "type": "Feature",
+      "properties": {
+        "country": "US",
+        "state": "Grand Princess",
+        "county": null,
+        "confirmed": 103,
+        "death": 3,
+        "iRateConfirm": 0,
+        "iRateDeath": 0,
+        "paintConfirm": "#f0f0f0",
+        "paintDeath": "#f0f0f0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          null,
+          null
+        ]
+      }
     }
   ]
 }
