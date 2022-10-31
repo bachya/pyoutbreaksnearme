@@ -1,15 +1,24 @@
 """Define tests for interacting with user data."""
+from typing import Any
+
 import aiohttp
 import pytest
+from aresponses import ResponsesMockServer
 
 from pyoutbreaksnearme import Client
-
 from tests.common import TEST_LATITUDE, TEST_LONGITUDE
 
 
 @pytest.mark.asyncio
-async def test_get_nearest_by_coordinate(aresponses, nonuserstats_us_response):
-    """Test getting the nearest user data report to a latitude/longitude."""
+async def test_get_nearest_by_coordinate(
+    aresponses: ResponsesMockServer, nonuserstats_us_response: dict[str, Any]
+) -> None:
+    """Test getting the nearest user data report to a latitude/longitude.
+
+    Args:
+        aresponses: An aresponses server.
+        nonuserstats_us_response: An API response payload.
+    """
     aresponses.add(
         "outbreaksnearme.org",
         "/api/nonuserstats/US",
