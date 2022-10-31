@@ -1,7 +1,7 @@
 """Define an API client."""
 from __future__ import annotations
 
-from typing import Any, Dict, cast
+from typing import Any, cast
 
 from aiohttp import ClientSession, ClientTimeout
 from aiohttp.client_exceptions import ClientError
@@ -25,7 +25,11 @@ class Client:  # pylint: disable=too-few-public-methods
     """Define the client."""
 
     def __init__(self, *, session: ClientSession | None = None) -> None:
-        """Initialize."""
+        """Initialize.
+
+        Args:
+            session: An optional aiohttp ClientSession.
+        """
         self._session = session
         self.cdc_data = CDCData(self._async_request)
         self.user_data = UserData(self._async_request)
@@ -33,18 +37,26 @@ class Client:  # pylint: disable=too-few-public-methods
     async def _async_request(
         self, method: str, endpoint: str, **kwargs: dict[str, Any]
     ) -> dict[str, Any]:
-        """Make a request against Flu Near You."""
+        """Make an API request.
+
+        Args:
+            method: An HTTP method.
+            endpoint: A relative API endpoint.
+            **kwargs: Additional kwargs to send with the request.
+
+        Returns:
+            An API response payload.
+
+        Raises:
+            RequestError: Raised upon an underlying HTTP error.
+        """
         kwargs.setdefault("headers", {})
         kwargs["headers"].update({"Host": API_HOST, "User-Agent": DEFAULT_USER_AGENT})
 
-        use_running_session = self._session and not self._session.closed
-
-        if use_running_session:
+        if use_running_session := self._session and not self._session.closed:
             session = self._session
         else:
             session = ClientSession(timeout=ClientTimeout(total=DEFAULT_TIMEOUT))
-
-        assert session
 
         try:
             async with session.request(
@@ -62,4 +74,4 @@ class Client:  # pylint: disable=too-few-public-methods
 
         LOGGER.debug("Data returned for /%s: %s", endpoint, data)
 
-        return cast(Dict[str, Any], data)
+        return cast(dict[str, Any], data)
