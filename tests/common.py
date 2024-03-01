@@ -1,4 +1,5 @@
 """Define common test utilities."""
+
 import os
 
 TEST_LATITUDE = 40.7152

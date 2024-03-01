@@ -1,4 +1,5 @@
 """Test client functionality."""
+
 import asyncio
 import logging
 

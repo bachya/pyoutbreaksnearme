@@ -1,4 +1,5 @@
 """Define various geographical utilities."""
+
 from math import asin, cos, radians, sin, sqrt
 
 
