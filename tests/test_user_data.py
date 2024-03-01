@@ -1,4 +1,5 @@
 """Define tests for interacting with user data."""
+
 import logging
 from typing import Any
 from unittest.mock import Mock

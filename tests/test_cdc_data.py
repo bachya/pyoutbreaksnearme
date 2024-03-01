@@ -1,4 +1,5 @@
 """Define tests for interacting with user data."""
+
 from typing import Any
 
 import aiohttp
